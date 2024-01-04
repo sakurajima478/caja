@@ -6,6 +6,9 @@ from django.contrib import messages
 
 from .forms import RegistroUsuario, LoginUsuario
 
+def inicio(request):
+    return render(request, "pages/core/inicio.html")
+
 def signIn(request):
     if request.method == 'GET':
         return render(request, 'pages/core/login.html', context={
@@ -53,4 +56,4 @@ def registro(request):
 
 def salir(request):
     logout(request)
-    return redirect('login')
+    return redirect('inicio')

@@ -123,7 +123,7 @@ USE_I18N = True
 USE_TZ = True
 
 #Login
-LOGIN_URL = 'login'
+LOGIN_URL = 'inicio'
 
 
 # Static files (CSS, JavaScript, Images)
