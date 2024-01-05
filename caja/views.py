@@ -4,15 +4,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .models import Producto
-from .forms import ProductoForm, ActualizarProductoForm
+from .forms import ProductoForm, ActualizarProductoForm, CalendarioForm
 
 # Create your views here.
 
 @login_required
 def  caja(request):
     fecha_actual = timezone.now()
-    productos = Producto.objects.filter(usuario=request.user, fecha_venta__date=fecha_actual)
     form_crear = ProductoForm(request.POST or None, initial={'cantidad': 1})
+    productos = Producto.objects.filter(usuario=request.user, fecha_venta__date=fecha_actual)
     
     venta = 0
     
@@ -46,6 +46,7 @@ def  caja(request):
         
         else:
             messages.warning(request, "Los datos son invalidos")
+
         
     context = {
         "productos" : productos,
@@ -55,6 +56,32 @@ def  caja(request):
     }
     
     return render(request, 'pages/caja/caja.html', context)
+
+@login_required
+def historial(request):
+    fecha = timezone.localtime(timezone.now())
+    fecha = fecha.strftime('%Y-%m-%d')
+    form_calendario = CalendarioForm(request.POST or None, initial={'fecha': fecha})
+    productos = Producto.objects.filter(usuario=request.user, fecha_venta__date=fecha)
+
+    venta = 0
+    
+    if form_calendario.is_valid():
+        fecha = form_calendario.cleaned_data['fecha']
+        productos = Producto.objects.filter(usuario=request.user, fecha_venta__date=fecha)
+    
+    for producto in productos:
+        venta += producto.precio * producto.cantidad
+        
+    context = {
+        "productos" : productos,
+        "venta" : venta,
+        "form_calendario" : form_calendario,
+        "fecha" : fecha
+    }
+    
+    return render(request, 'pages/caja/historial.html', context)
+    
 
 @login_required
 def actualizar_producto(request, pk):

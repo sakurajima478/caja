@@ -8,7 +8,7 @@
   </div>
   <div class="mx-auto max-w-2xl text-center">
     <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Total Venta : {{ venta|intcomma }}</h2>
-    <p class="my-2 text-lg leading-8 text-gray-600">{{ fecha_actual|date:"SHORT_DATE_FORMAT" }}</p>
+    <p class="my-2 text-lg leading-8 text-gray-600">Fecha : {{ fecha_actual|date:"SHORT_DATE_FORMAT" }}</p>
     <a href="{% url 'salir' %}" class="px-2.5 py-1.5 text-xs font-medium rounded dark:text-dark-txt text-indigo-700 dark:bg-dark-third dark:hover:bg-dark-third hover:text-red-700 dark:focus:ring-dark-third focus:ring-indigo-500">Salir</a>
   </div>
 
@@ -20,6 +20,9 @@
                 Agregar Producto Vendido
             </span>
         </button>
+        <a href="{% url 'caja:historial' %}" class="my-4  mx-auto inline-flex float-right items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded dark:text-dark-txt text-yellow-700 dark:bg-dark-third bg-yellow-200 dark:hover:bg-dark-third hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-third focus:ring-indigo-500">
+              Historial
+      </a>
     </div>
 
     <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="open = false" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
