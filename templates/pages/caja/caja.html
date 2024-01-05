@@ -8,7 +8,7 @@
   </div>
   <div class="mx-auto max-w-2xl text-center">
     <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Total Venta : {{ venta|intcomma }}</h2>
-    <p class="my-2 text-lg leading-8 text-gray-600">Fecha : {{ fecha_actual|date:"SHORT_DATE_FORMAT" }}</p>
+    <p class="my-2 text-lg leading-8 text-gray-600">{{ fecha_actual|date:"SHORT_DATE_FORMAT" }}</p>
     <a href="{% url 'salir' %}" class="px-2.5 py-1.5 text-xs font-medium rounded dark:text-dark-txt text-indigo-700 dark:bg-dark-third dark:hover:bg-dark-third hover:text-red-700 dark:focus:ring-dark-third focus:ring-indigo-500">Salir</a>
   </div>
 
@@ -20,7 +20,7 @@
                 Agregar Producto Vendido
             </span>
         </button>
-        <a href="{% url 'caja:historial' %}" class="my-4  mx-auto inline-flex float-right items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded dark:text-dark-txt text-yellow-700 dark:bg-dark-third bg-yellow-200 dark:hover:bg-dark-third hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-third focus:ring-indigo-500">
+        <a href="{% url 'caja:historial' %}" class="my-4  mx-auto inline-flex float-right items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded dark:text-dark-txt text-yellow-700 dark:bg-dark-third bg-yellow-200 dark:hover:bg-dark-third hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-third focus:ring-indigo-500">
               Historial
       </a>
     </div>
@@ -90,6 +90,9 @@
           <div class="flex min-w-0 gap-x-4">
             <div class="min-w-0 flex-auto">
               <p class="text-sm font-semibold leading-6 text-gray-900">{{ producto.nombre }}</p>
+              <p class="text-sm leading-6 text-gray-900 sm:hidden"><strong>Total Vendido:</strong> {{ producto.total_producto|intcomma }}</p>
+              <p class="mt-1 truncate text-xs leading-5 text-gray-500 sm:hidden"><strong>Precio Unidad:</strong> {{ producto.precio|intcomma }}</p>
+              <p class="mt-1 text-xs leading-5 text-gray-500 sm:hidden"><strong>Cantidad Vendida:</strong> {{ producto.cantidad }}</time></p>
               <p class="mt-1 truncate text-xs leading-5 text-gray-500"><strong>Fecha Venta:</strong> {{ producto.fecha_venta|date:"SHORT_DATE_FORMAT" }} , {{ producto.fecha_venta|time:"H:i" }}</p>
               <a href="{% url 'caja:eliminar_producto' producto.id %}" class="mt-2 inline-flex float-right items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded dark:text-dark-txt text-red-700 dark:bg-dark-third bg-red-100 dark:hover:bg-dark-third hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-third focus:ring-red-500">
                 Eliminar

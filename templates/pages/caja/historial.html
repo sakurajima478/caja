@@ -36,6 +36,9 @@
           <div class="flex min-w-0 gap-x-4">
             <div class="min-w-0 flex-auto">
               <p class="text-sm font-semibold leading-6 text-gray-900">{{ producto.nombre }}</p>
+              <p class="text-sm leading-6 text-gray-900 sm:hidden"><strong>Total Vendido:</strong> {{ producto.total_producto|intcomma }}</p>
+              <p class="mt-1 truncate text-xs leading-5 text-gray-500 sm:hidden"><strong>Precio Unidad:</strong> {{ producto.precio|intcomma }}</p>
+              <p class="mt-1 text-xs leading-5 text-gray-500 sm:hidden"><strong>Cantidad Vendida:</strong> {{ producto.cantidad }}</time></p>
               <p class="mt-1 truncate text-xs leading-5 text-gray-500"><strong>Fecha Venta:</strong> {{ producto.fecha_venta|date:"SHORT_DATE_FORMAT" }} , {{ producto.fecha_venta|time:"H:i" }}</p>
             </div>
           </div>
