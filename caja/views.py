@@ -33,6 +33,7 @@ def  caja(request):
                  
             elif nuevo_producto.cantidad < 1:
                  messages.warning(request, "Error, La cantidad debe ser mayor a 1!")
+            
             else:
                 
                 for producto in productos:

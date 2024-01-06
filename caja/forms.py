@@ -3,7 +3,14 @@ from django import forms
 from .models import Producto
 
 class CalendarioForm(forms.Form):
-    fecha = forms.DateField(widget = forms.SelectDateWidget(years=range(2023, 2034)), input_formats=['%Y-%m-%d', '%d/%m/%Y'])
+    fecha = forms.DateField(
+        widget = forms.SelectDateWidget(
+            attrs={'class':'mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'},
+            years=range(2023, 2034)
+        ),
+        
+        input_formats=['%Y-%m-%d', '%d/%m/%Y'],
+    )
     
 class ProductoForm(forms.ModelForm):
     nombre = forms.CharField(
